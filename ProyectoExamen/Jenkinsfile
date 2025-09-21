@@ -1,0 +1,27 @@
+pipeline {
+  agent { any }
+
+  stages {
+    stage('Build') {
+      steps {
+        bat 'mvn -B -e -DskipTests package'
+      }
+    }
+    stage('Test') {
+      steps {
+        bat 'mvn -B -e test'
+      }
+      post {
+        always {
+          junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+          archiveArtifacts artifacts: 'target/**', fingerprint: true, onlyIfSuccessful: false
+        }
+      }
+    }
+  }
+
+  post {
+    success { echo "Build & Tests OK" }
+    failure { echo "Falló el pipeline. Revisa los reportes." }
+  }
+}
