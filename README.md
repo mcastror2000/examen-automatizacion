@@ -114,12 +114,28 @@ El pipeline está compuesto por dos stages principales:
 
 ---
 
-## IV. Conclusiones
+## IV. Actividad 3 – Deployment Pipeline y Rollback
+
+Se implementó un pipeline de **deployment** que incluye:  
+- *Stages* de **acceptance tests** usando Maven Failsafe.  
+- Despliegue automático del artefacto en un ambiente de prueba (`deploy/test`).  
+- Registro de versión con fecha y hash de commit (`version.txt`).  
+
+Además, se agregó un **mecanismo de rollback** (`rollback.ps1`) que permite restaurar la versión previa en caso de falla de despliegue.  
+
+### Evidencia
+- Capturas de ejecución mostrando:
+  - **Acceptance tests** exitosos.  
+  - **Despliegue en `deploy/test`** con artefacto `app.jar` y archivo `version.txt`.  
+  - **Rollback** ejecutado correctamente, restaurando versión previa.  
+
+---
+
+## Conclusión
 
 El repositorio cumple con los requisitos del examen:  
 1. Flujo de ramas con GitFlow.  
 2. Proyecto Maven configurado con JUnit 5.  
-3. Implementación de pruebas unitarias e integración.  
-4. Pipeline de CI versionado en GitHub mediante un `Jenkinsfile`.  
-5. Evidencia de compilación y ejecución exitosa de pruebas automatizadas.  
+3. Publicación en GitHub con el `pom.xml` y ramas definidas.  
+4. Pipeline de CI/CD con **build, pruebas, despliegue y rollback**. 
 
